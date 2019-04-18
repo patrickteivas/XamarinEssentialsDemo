@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Flashlight state: off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/flashlight" />
+    <Button
+        android:text="Toggle flashlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/flashlightBtn" />
+    <TextView
+        android:text="Pressure: off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/barometer" />
+    <Button
+        android:text="Toggle barometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/barometerBtn" />
+    <TextView
+        android:text="Network access: off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/networkAccess" />
+    <Button
+        android:text="Toggle network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/networkBtn" />
+    <TextView
+        android:text="Orientation: off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orientation" />
+    <Button
+        android:text="Toggle orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/orientationBtn" />
+</LinearLayout>
