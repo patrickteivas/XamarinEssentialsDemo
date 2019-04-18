@@ -39,6 +39,14 @@ namespace App2
 
             var orientationBtn = FindViewById<Button>(Resource.Id.orientationBtn);
             orientationBtn.Click += OrientationBtn_Click;
+
+            var batteryBtn = FindViewById<Button>(Resource.Id.batteryBtn);
+            batteryBtn.Click += BatteryBtn_Click;
+        }
+
+        private void BatteryBtn_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void NetworkBtn_Click(object sender, EventArgs e)

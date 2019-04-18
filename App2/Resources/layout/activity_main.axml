@@ -58,4 +58,23 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:id="@+id/orientationBtn" />
+    <TextView
+        android:text="Battery source: off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/batterySource" />
+    <TextView
+        android:text="Battery state: off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/batteryState" />
+    <Button
+        android:text="Toggle battery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/batteryBtn" />
 </LinearLayout>
