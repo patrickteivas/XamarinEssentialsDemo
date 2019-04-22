@@ -13,6 +13,7 @@ namespace App2
     {
         private bool flashlightToggle = false;
         private bool networkToggle = false;
+        private bool batteryToggle = false;
         SensorSpeed speed = SensorSpeed.UI;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -37,6 +38,8 @@ namespace App2
 
             OrientationSensor.ReadingChanged += OrientationSensor_ReadingChanged;
 
+            Battery.BatteryInfoChanged += Battery_BatteryInfoChanged;
+
             var orientationBtn = FindViewById<Button>(Resource.Id.orientationBtn);
             orientationBtn.Click += OrientationBtn_Click;
 
@@ -44,9 +47,31 @@ namespace App2
             batteryBtn.Click += BatteryBtn_Click;
         }
 
+        void Battery_BatteryInfoChanged(object sender, BatteryInfoChangedEventArgs e)
+        {
+            if (batteryToggle)
+            {
+                var state = e.State;
+                var source = e.PowerSource;
+                FindViewById<TextView>(Resource.Id.batterySource).Text = "Battery source: " + source;
+                FindViewById<TextView>(Resource.Id.batteryState).Text = "Battery state: " + state;
+            }
+        }
+
         private void BatteryBtn_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (!batteryToggle)
+            {
+                FindViewById<TextView>(Resource.Id.batterySource).Text = "Battery source: " + Battery.PowerSource;
+                FindViewById<TextView>(Resource.Id.batteryState).Text = "Battery state: " + Battery.State;
+            }
+            else
+            {
+                FindViewById<TextView>(Resource.Id.batterySource).Text = "Battery source: off";
+                FindViewById<TextView>(Resource.Id.batteryState).Text = "Battery state: off";
+            }
+
+            batteryToggle = !batteryToggle;
         }
 
         private void NetworkBtn_Click(object sender, EventArgs e)
@@ -116,13 +141,13 @@ namespace App2
             barometer.Text = "Pressure: " + data.PressureInHectopascals;
         }
 
-        private void FlashlightBtn_Click(object sender, EventArgs e)
+        private async void FlashlightBtn_Click(object sender, EventArgs e)
         {
             if (!flashlightToggle)
             {
                 try
                 {
-                    Flashlight.TurnOnAsync();
+                    await Flashlight.TurnOnAsync();
                     FindViewById<TextView>(Resource.Id.flashlight).Text = "Flashlight state: on";
                     flashlightToggle = true;
                 }
@@ -133,7 +158,7 @@ namespace App2
             }
             else
             {
-                Flashlight.TurnOffAsync();
+                await Flashlight.TurnOffAsync();
                 FindViewById<TextView>(Resource.Id.flashlight).Text = "Flashlight state: off";
                 flashlightToggle = false;
             }
