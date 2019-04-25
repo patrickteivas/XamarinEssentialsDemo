@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Widget;
 using Xamarin.Essentials;
 using System;
+using Android.Content;
+using Android.Gms.Common;
 
 namespace App2
 {
@@ -45,6 +47,29 @@ namespace App2
 
             var batteryBtn = FindViewById<Button>(Resource.Id.batteryBtn);
             batteryBtn.Click += BatteryBtn_Click;
+
+            //var geoUri = Android.Net.Uri.Parse("geo:59.4268156,24.7412661");
+            //var geoUri2 = Android.Net.Uri.Parse("geo:0,0?q=Pärnu maantee 57a");
+            //var mapIntent = new Intent(Intent.ActionView, geoUri);
+            //StartActivity(mapIntent);
+        }
+
+        bool IsGooglePlayServicesInstalled()
+        {
+            var queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+
+            if (queryResult == ConnectionResult.Success)
+            {
+                return true;
+            }
+
+            if (GoogleApiAvailability.Instance.IsUserResolvableError(queryResult))
+            {
+                var errorString = GoogleApiAvailability.Instance.GetErrorString(queryResult);
+                Toast.MakeText(ApplicationContext, errorString, ToastLength.Long).Show();
+            }
+
+            return false;
         }
 
         void Battery_BatteryInfoChanged(object sender, BatteryInfoChangedEventArgs e)
